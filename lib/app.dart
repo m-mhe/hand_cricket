@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hand_cricket/screens/game_screen.dart';
 import 'package:hand_cricket/screens/select_screen.dart';
 
 class MyApp extends StatelessWidget {
@@ -11,7 +10,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Hand Cricket',
       theme: ThemeData(
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
               centerTitle: true,
               backgroundColor: Color(0xff607C3C),
               foregroundColor: Colors.white,
@@ -19,26 +18,26 @@ class MyApp extends StatelessWidget {
                   TextStyle(fontWeight: FontWeight.w600, fontSize: 24)),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 30),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(7)),
-                backgroundColor: Color(0xff607C3C),
+                backgroundColor: const Color(0xff607C3C),
                 foregroundColor: Colors.white,
                 textStyle:
-                    TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
           ),
           inputDecorationTheme: InputDecorationTheme(
-              labelStyle: TextStyle(
+              labelStyle: const TextStyle(
                 color: Color(0xff607C3C),
               ),
               filled: true,
-              fillColor: Color(0xffECECA3),
+              fillColor: const Color(0xffECECA3),
               disabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(7),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Color(0xffECECA3),
                   ))),
-          scaffoldBackgroundColor: Color(0xffABC32F)),
+          scaffoldBackgroundColor: const Color(0xffABC32F)),
       home: SelectScreen(),
     );
   }

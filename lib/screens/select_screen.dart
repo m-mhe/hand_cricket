@@ -31,8 +31,8 @@ class SelectScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.videogame_asset),
-        title: Text('Select Overs and Wickets'),
+        leading: const Icon(Icons.videogame_asset),
+        title: const Text('Select Overs and Wickets'),
         actions: [
           IconButton(
               onPressed: () {
@@ -40,30 +40,30 @@ class SelectScreen extends StatelessWidget {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      backgroundColor: Color(0xff607C3C),
-                      title: Text(
+                      backgroundColor: const Color(0xff607C3C),
+                      title: const Text(
                         'What is Hand Cricket?',
                         style: TextStyle(color: Colors.white),
                       ),
-                      content: Text(
+                      content: const Text(
                           style: TextStyle(color: Colors.white, fontSize: 16),
                           'Hand cricket is a game played by many school kids for fun. It uses the concepts of cricket and played with hands. Hand Cricket is a game in which two players show scores on their respective fingers. If the scores are equal, the batsman is declared out.'),
                       actions: [
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
-                              foregroundColor: Color(0xff607C3C),
+                              foregroundColor: const Color(0xff607C3C),
                             ),
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: Text('OK')),
+                            child: const Text('OK')),
                       ],
                     );
                   },
                 );
               },
-              icon: Icon(Icons.help))
+              icon: const Icon(Icons.help))
         ],
       ),
       body: Center(
@@ -77,19 +77,19 @@ class SelectScreen extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: _subOver,
-                      icon: Icon(Icons.horizontal_rule_rounded)),
+                      icon: const Icon(Icons.horizontal_rule_rounded)),
                   SizedBox(
                       width: MediaQuery.sizeOf(context).width / 2,
                       child: TextField(
                         controller: _tEcOver,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 16),
                         enabled: false,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           prefixText: 'No. of Over: ',
                         ),
                       )),
-                  IconButton(onPressed: _addOver, icon: Icon(Icons.add)),
+                  IconButton(onPressed: _addOver, icon: const Icon(Icons.add)),
                 ],
               ),
             ),
@@ -100,24 +100,24 @@ class SelectScreen extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: _subWicket,
-                      icon: Icon(Icons.horizontal_rule_rounded)),
+                      icon: const Icon(Icons.horizontal_rule_rounded)),
                   SizedBox(
                       width: MediaQuery.sizeOf(context).width / 2,
                       child: TextField(
                         controller: _tEcWicket,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 16),
                         enabled: false,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           prefixText: 'No. of wicket: ',
                         ),
                       )),
-                  IconButton(onPressed: _addWicket, icon: Icon(Icons.add)),
+                  IconButton(onPressed: _addWicket, icon: const Icon(Icons.add)),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.symmetric(vertical: 10),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.pushReplacement(

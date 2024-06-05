@@ -20,14 +20,14 @@ class _GameScreenState extends State<GameScreen> {
   final TextEditingController _tEcTotalRun = TextEditingController();
   final TextEditingController _tEcPlayer = TextEditingController();
   final TextEditingController _tEcCurrentGameState = TextEditingController();
-  int _PlayertotalBall = 0;
-  int _PlayertotalWicket = 0;
+  int _playerTotalBall = 0;
+  int _playerTotalWicket = 0;
   int _target = 0;
-  int _PlayertotalRuns = 0;
+  int _playerTotalRuns = 0;
   bool _isUserTurn = true;
-  int _AitotalRuns = 0;
-  int _AitotalBall = 0;
-  int _AitotalWicket = 0;
+  int _aiTotalRuns = 0;
+  int _aiTotalBall = 0;
+  int _aiTotalWicket = 0;
 
   void _upDateCurrentGameState(int ball, int wicket) {
     _tEcCurrentGameState.text =
@@ -43,13 +43,13 @@ class _GameScreenState extends State<GameScreen> {
       _tEcAi.clear();
       _tEcAi.text = aiTurn.toString();
       if (aiTurn != playerTurn) {
-        _PlayertotalRuns += playerTurn;
-        _PlayertotalBall--;
-        if (_PlayertotalBall <= 0) {
+        _playerTotalRuns += playerTurn;
+        _playerTotalBall--;
+        if (_playerTotalBall <= 0) {
           _isUserTurn = false;
-          _target = _PlayertotalRuns + 1;
-          _PlayertotalRuns = 0;
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          _target = _playerTotalRuns + 1;
+          _playerTotalRuns = 0;
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text(
               'You are balling now.',
               textAlign: TextAlign.center,
@@ -61,9 +61,9 @@ class _GameScreenState extends State<GameScreen> {
           ));
         }
       } else {
-        _PlayertotalWicket--;
-        _PlayertotalBall--;
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        _playerTotalWicket--;
+        _playerTotalBall--;
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text(
             'One wicket gone!',
             textAlign: TextAlign.center,
@@ -71,11 +71,11 @@ class _GameScreenState extends State<GameScreen> {
           ),
           backgroundColor: Colors.orange,
         ));
-        if (_PlayertotalWicket == 0 || _PlayertotalBall == 0) {
+        if (_playerTotalWicket == 0 || _playerTotalBall == 0) {
           _isUserTurn = false;
-          _target = _PlayertotalRuns + 1;
-          _PlayertotalRuns = 0;
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          _target = _playerTotalRuns + 1;
+          _playerTotalRuns = 0;
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text(
               'You are balling now.',
               textAlign: TextAlign.center,
@@ -91,10 +91,10 @@ class _GameScreenState extends State<GameScreen> {
       _tEcAi.clear();
       _tEcAi.text = aiTurn.toString();
       if (aiTurn != playerTurn) {
-        _AitotalRuns += aiTurn;
-        _AitotalBall--;
-        if (_AitotalBall == 0) {
-          if (_AitotalRuns == (1 - _target)) {
+        _aiTotalRuns += aiTurn;
+        _aiTotalBall--;
+        if (_aiTotalBall == 0) {
+          if (_aiTotalRuns == (1 - _target)) {
             _tEcCurrentGameState.dispose();
             _tEcTotalRun.dispose();
             _tEcTarget.dispose();
@@ -116,7 +116,7 @@ class _GameScreenState extends State<GameScreen> {
                     actions: [
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xff607C3C),
+                            backgroundColor: const Color(0xff607C3C),
                             foregroundColor: Colors.white,
                           ),
                           onPressed: () {
@@ -125,11 +125,11 @@ class _GameScreenState extends State<GameScreen> {
                               return SelectScreen();
                             }), (route)=> false);
                           },
-                          child: Text('OK')),
+                          child: const Text('OK')),
                     ],
                   );
                 });
-          } else if (_AitotalRuns <= _target) {
+          } else if (_aiTotalRuns <= _target) {
             _tEcCurrentGameState.dispose();
             _tEcTotalRun.dispose();
             _tEcTarget.dispose();
@@ -139,19 +139,19 @@ class _GameScreenState extends State<GameScreen> {
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                    backgroundColor: Color(0xff607C3C),
-                    title: Text(
+                    backgroundColor: const Color(0xff607C3C),
+                    title: const Text(
                       'Congratulation!',
                       style: TextStyle(color: Colors.white),
                     ),
-                    content: Text(
+                    content: const Text(
                         style: TextStyle(color: Colors.white, fontSize: 16),
                         'You Won! do You want to play another match?'),
                     actions: [
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
-                            foregroundColor: Color(0xff607C3C),
+                            foregroundColor: const Color(0xff607C3C),
                           ),
                           onPressed: () {
                             Navigator.pushAndRemoveUntil(context,
@@ -159,11 +159,11 @@ class _GameScreenState extends State<GameScreen> {
                                   return SelectScreen();
                                 }), (route)=> false);
                           },
-                          child: Text('OK')),
+                          child: const Text('OK')),
                     ],
                   );
                 });
-          } else if (_AitotalRuns >= _target) {
+          } else if (_aiTotalRuns >= _target) {
             _tEcCurrentGameState.dispose();
             _tEcTotalRun.dispose();
             _tEcTarget.dispose();
@@ -174,11 +174,11 @@ class _GameScreenState extends State<GameScreen> {
                 builder: (context) {
                   return AlertDialog(
                     backgroundColor: Colors.red,
-                    title: Text(
+                    title: const Text(
                       'You Lose!',
                       style: TextStyle(color: Colors.white),
                     ),
-                    content: Text(
+                    content: const Text(
                         style: TextStyle(color: Colors.white, fontSize: 16),
                         'You Lose! do You want to play another match?'),
                     actions: [
@@ -193,12 +193,12 @@ class _GameScreenState extends State<GameScreen> {
                                   return SelectScreen();
                                 }), (route)=> false);
                           },
-                          child: Text('OK')),
+                          child: const Text('OK')),
                     ],
                   );
                 });
           }
-        } else if (_AitotalRuns >= _target) {
+        } else if (_aiTotalRuns >= _target) {
           _tEcCurrentGameState.dispose();
           _tEcTotalRun.dispose();
           _tEcTarget.dispose();
@@ -209,11 +209,11 @@ class _GameScreenState extends State<GameScreen> {
               builder: (context) {
                 return AlertDialog(
                   backgroundColor: Colors.red,
-                  title: Text(
+                  title: const Text(
                     'You Lose!',
                     style: TextStyle(color: Colors.white),
                   ),
-                  content: Text(
+                  content: const Text(
                       style: TextStyle(color: Colors.white, fontSize: 16),
                       'You Lose! do You want to play another match?'),
                   actions: [
@@ -228,15 +228,15 @@ class _GameScreenState extends State<GameScreen> {
                                 return SelectScreen();
                               }), (route)=> false);
                         },
-                        child: Text('OK')),
+                        child: const Text('OK')),
                   ],
                 );
               });
         }
       } else {
-        _AitotalWicket--;
-        _AitotalBall--;
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        _aiTotalWicket--;
+        _aiTotalBall--;
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text(
             'One wicket done!',
             textAlign: TextAlign.center,
@@ -244,8 +244,8 @@ class _GameScreenState extends State<GameScreen> {
           ),
           backgroundColor: Colors.green,
         ));
-        if (_AitotalWicket == 0 || _AitotalBall == 0) {
-          if (_AitotalRuns == (1 - _target)) {
+        if (_aiTotalWicket == 0 || _aiTotalBall == 0) {
+          if (_aiTotalRuns == (1 - _target)) {
             _tEcCurrentGameState.dispose();
             _tEcTotalRun.dispose();
             _tEcTarget.dispose();
@@ -267,7 +267,7 @@ class _GameScreenState extends State<GameScreen> {
                     actions: [
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xff607C3C),
+                            backgroundColor: const Color(0xff607C3C),
                             foregroundColor: Colors.white,
                           ),
                           onPressed: () {
@@ -276,11 +276,11 @@ class _GameScreenState extends State<GameScreen> {
                                   return SelectScreen();
                                 }), (route)=> false);
                           },
-                          child: Text('OK')),
+                          child: const Text('OK')),
                     ],
                   );
                 });
-          } else if (_AitotalRuns <= _target) {
+          } else if (_aiTotalRuns <= _target) {
             _tEcCurrentGameState.dispose();
             _tEcTotalRun.dispose();
             _tEcTarget.dispose();
@@ -290,19 +290,19 @@ class _GameScreenState extends State<GameScreen> {
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                    backgroundColor: Color(0xff607C3C),
-                    title: Text(
+                    backgroundColor: const Color(0xff607C3C),
+                    title: const Text(
                       'Congratulation!',
                       style: TextStyle(color: Colors.white),
                     ),
-                    content: Text(
+                    content: const Text(
                         style: TextStyle(color: Colors.white, fontSize: 16),
                         'You Won! do You want to play another match?'),
                     actions: [
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
-                            foregroundColor: Color(0xff607C3C),
+                            foregroundColor: const Color(0xff607C3C),
                           ),
                           onPressed: () {
                             Navigator.pushAndRemoveUntil(context,
@@ -310,12 +310,12 @@ class _GameScreenState extends State<GameScreen> {
                                   return SelectScreen();
                                 }), (route)=> false);
                           },
-                          child: Text('OK')),
+                          child: const Text('OK')),
                     ],
                   );
                 });
           }
-        } else if (_AitotalRuns >= _target) {
+        } else if (_aiTotalRuns >= _target) {
           _tEcCurrentGameState.dispose();
           _tEcTotalRun.dispose();
           _tEcTarget.dispose();
@@ -326,11 +326,11 @@ class _GameScreenState extends State<GameScreen> {
               builder: (context) {
                 return AlertDialog(
                   backgroundColor: Colors.red,
-                  title: Text(
+                  title: const Text(
                     'You Lose!',
                     style: TextStyle(color: Colors.white),
                   ),
-                  content: Text(
+                  content: const Text(
                       style: TextStyle(color: Colors.white, fontSize: 16),
                       'You Lose! do You want to play another match?'),
                   actions: [
@@ -345,7 +345,7 @@ class _GameScreenState extends State<GameScreen> {
                                 return SelectScreen();
                               }), (route)=> false);
                         },
-                        child: Text('OK')),
+                        child: const Text('OK')),
                   ],
                 );
               });
@@ -354,30 +354,30 @@ class _GameScreenState extends State<GameScreen> {
     }
     _tEcTarget.text = _target.toString();
     if (_isUserTurn == true) {
-      _tEcTotalRun.text = _PlayertotalRuns.toString();
-      _upDateCurrentGameState(_PlayertotalBall, _PlayertotalWicket);
+      _tEcTotalRun.text = _playerTotalRuns.toString();
+      _upDateCurrentGameState(_playerTotalBall, _playerTotalWicket);
     } else {
-      _tEcTotalRun.text = _AitotalRuns.toString();
-      _upDateCurrentGameState(_AitotalBall, _AitotalWicket);
+      _tEcTotalRun.text = _aiTotalRuns.toString();
+      _upDateCurrentGameState(_aiTotalBall, _aiTotalWicket);
     }
   }
 
   @override
   void initState() {
     super.initState();
-    _PlayertotalBall = widget.totalOver * 6;
-    _PlayertotalWicket = widget.totalWicket;
-    _AitotalBall = widget.totalOver * 6;
-    _AitotalWicket = widget.totalWicket;
-    _upDateCurrentGameState(_PlayertotalBall, _PlayertotalWicket);
+    _playerTotalBall = widget.totalOver * 6;
+    _playerTotalWicket = widget.totalWicket;
+    _aiTotalBall = widget.totalOver * 6;
+    _aiTotalWicket = widget.totalWicket;
+    _upDateCurrentGameState(_playerTotalBall, _playerTotalWicket);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.videogame_asset),
-        title: Text('Hand Cricket'),
+        leading: const Icon(Icons.videogame_asset),
+        title: const Text('Hand Cricket'),
         actions: [
           IconButton(
               onPressed: () {
@@ -385,37 +385,37 @@ class _GameScreenState extends State<GameScreen> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      backgroundColor: Color(0xff607C3C),
-                      title: Text(
+                      backgroundColor: const Color(0xff607C3C),
+                      title: const Text(
                         'What is Hand Cricket?',
                         style: TextStyle(color: Colors.white),
                       ),
-                      content: Text(
+                      content: const Text(
                           style: TextStyle(color: Colors.white, fontSize: 16),
                           'Hand cricket is a game played by many school kids for fun. It uses the concepts of cricket and played with hands. Hand Cricket is a game in which two players show scores on their respective fingers. If the scores are equal, the batsman is declared out.'),
                       actions: [
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
-                              foregroundColor: Color(0xff607C3C),
+                              foregroundColor: const Color(0xff607C3C),
                             ),
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: Text('OK')),
+                            child: const Text('OK')),
                       ],
                     );
                   },
                 );
               },
-              icon: Icon(Icons.help))
+              icon: const Icon(Icons.help))
         ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               "AI",
               style: TextStyle(
                   color: Color(0xff607C3C),
@@ -428,7 +428,7 @@ class _GameScreenState extends State<GameScreen> {
                   width: MediaQuery.sizeOf(context).width / 1.5,
                   child: TextField(
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                    style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                     controller: _tEcAi,
                     enabled: false,
                   )),
@@ -442,20 +442,20 @@ class _GameScreenState extends State<GameScreen> {
                       width: MediaQuery.sizeOf(context).width / 4,
                       child: TextField(
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 16),
                         controller: _tEcTotalRun,
                         enabled: false,
                       )),
                 ),
-                Text(
+                const Text(
                   ": RUNS",
                   style: TextStyle(
                       color: Color(0xff607C3C),
                       fontWeight: FontWeight.w500,
                       fontSize: 12),
                 ),
-                Text(
+                const Text(
                   "TARGET :",
                   style: TextStyle(
                       color: Color(0xff607C3C),
@@ -468,7 +468,7 @@ class _GameScreenState extends State<GameScreen> {
                       width: MediaQuery.sizeOf(context).width / 4,
                       child: TextField(
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 16),
                         controller: _tEcTarget,
                         enabled: false,
@@ -482,7 +482,7 @@ class _GameScreenState extends State<GameScreen> {
                   width: MediaQuery.sizeOf(context).width / 1.5,
                   child: TextField(
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                    style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                     controller: _tEcPlayer,
                     enabled: false,
                   )),
@@ -497,49 +497,49 @@ class _GameScreenState extends State<GameScreen> {
                     padding: const EdgeInsets.only(bottom: 5),
                     child: ElevatedButton(
                       onPressed: () => _userInput(0),
-                      child: Text('0'),
+                      child: const Text('0'),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(bottom: 5),
+                    padding: const EdgeInsets.only(bottom: 5),
                     child: ElevatedButton(
                       onPressed: () => _userInput(1),
-                      child: Text('1'),
+                      child: const Text('1'),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5),
                     child: ElevatedButton(
                       onPressed: () => _userInput(2),
-                      child: Text('2'),
+                      child: const Text('2'),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5),
                     child: ElevatedButton(
                       onPressed: () => _userInput(3),
-                      child: Text('3'),
+                      child: const Text('3'),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5),
                     child: ElevatedButton(
                       onPressed: () => _userInput(4),
-                      child: Text('4'),
+                      child: const Text('4'),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5),
                     child: ElevatedButton(
                       onPressed: () => _userInput(5),
-                      child: Text('5'),
+                      child: const Text('5'),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5),
                     child: ElevatedButton(
                       onPressed: () => _userInput(6),
-                      child: Text('6'),
+                      child: const Text('6'),
                     ),
                   ),
                 ],
@@ -549,7 +549,7 @@ class _GameScreenState extends State<GameScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: TextField(
                 textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+                style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
                 controller: _tEcCurrentGameState,
                 enabled: false,
               ),
