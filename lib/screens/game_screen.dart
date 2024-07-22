@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-
 import 'package:hand_cricket/screens/select_screen.dart';
 
 class GameScreen extends StatefulWidget {
